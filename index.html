@@ -12,33 +12,18 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-		<script type="text/javascript"
-				src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js">
+		<script type="text/javascript">
+			(function() {
+				// https://dashboard.emailjs.com/admin/integration
+				emailjs.init('user_2WwxSIv5h6sagBJcyXws1');
+			})();
 		</script>
 		<script type="text/javascript">
-			let emailjs;
-			(function(){
-				emailjs.init("user_2WwxSIv5h6sagBJcyXws1");
-			})();
 			window.onload = function() {
 				document.getElementById('contact-form').addEventListener('submit', function(event) {
 					event.preventDefault();
 					// these IDs from the previous steps
 					emailjs.sendForm('service_jv1t5a6', 'template_6f4gqfz', this)
-							.then(function() {
-								console.log('SUCCESS!');
-							}, function(error) {
-								console.log('FAILED...', error);
-							});
-				});
-			}
-		</script>
-		<script type="text/javascript">
-			window.onload = function() {
-				document.getElementById('contact-form').addEventListener('submit', function(event) {
-					event.preventDefault();
-					// these IDs from the previous steps
-					emailjs.sendForm('contact_service', 'contact_form', this)
 							.then(function() {
 								console.log('SUCCESS!');
 							}, function(error) {
