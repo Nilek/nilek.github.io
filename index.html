@@ -11,6 +11,31 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+		<script type="text/javascript"
+				src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js">
+		</script>
+		<script type="text/javascript">
+			(function(){
+				emailjs.init("user_2WwxSIv5h6sagBJcyXws1");
+			})();
+		</script>
+		<script type="text/javascript">
+			window.onload = function() {
+				document.getElementById('contact-form').addEventListener('submit', function(event) {
+					event.preventDefault();
+					// generate a five digit number for the contact_number variable
+					this.contact_number.value = Math.random() * 100000 | 0;
+					// these IDs from the previous steps
+					emailjs.sendForm('contact_service', 'contact_form', this)
+							.then(function() {
+								console.log('SUCCESS!');
+							}, function(error) {
+								console.log('FAILED...', error);
+							});
+				});
+			}
+		</script>
 	</head>
 	<body class="is-preload">
 
@@ -99,14 +124,14 @@
 								<header>
 									<h2>Contact Me</h2>
 								</header>
-								<form action="#" method="post">
+								<form action="#" method="post" id="contact-form">
 									<div>
 										<div class="row">
 											<div class="col-6 col-12-medium">
-												<input type="text" name="name" placeholder="Name" />
+												<input type="text" name="user_name" placeholder="Name" />
 											</div>
 											<div class="col-6 col-12-medium">
-												<input type="text" name="email" placeholder="Email" />
+												<input type="text" name="user_email" placeholder="Email" />
 											</div>
 											<div class="col-12">
 												<input type="text" name="subject" placeholder="Subject" />
@@ -115,7 +140,7 @@
 												<textarea name="message" placeholder="Message" rows="6"></textarea>
 											</div>
 											<div class="col-12">
-												<input type="submit" value="Send Message" />
+												<input type="submit" value="Send" />
 											</div>
 										</div>
 									</div>
